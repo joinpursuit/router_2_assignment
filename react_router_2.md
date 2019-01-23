@@ -4,7 +4,7 @@ So, our Ultimate Image Fetcher is, thus far, perfect. However, we need some way 
 
 Let's make another route called `/favorites`.
 
-## The Problem
+## The Problem?
 
 Some of you might be a little nervous about this - for good reason. Theoretically, we should be able to add to our favorites from _either_ the Random Image or Random Breed Image components. However, each of these components hold their own state. How might we accomplish this?
 
