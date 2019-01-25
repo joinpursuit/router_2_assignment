@@ -1,9 +1,15 @@
 import React from 'react';
 
-const FavImages = () => {
+const FavImages = ({favorites}) => {
+  let imageList = favorites.map(image => {
+    return (
+      <img src={image.images} alt=""/>
+    )
+  })
   return (
     <div className="container">
-      <h2 className="center">FavImages List</h2>
+      <h4 className="center">FavImages List</h4>
+      {imageList}
     </div>
   )
 

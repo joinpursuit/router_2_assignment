@@ -38,6 +38,7 @@ class App extends Component {
           <Route path='/favorites' component={FavImages} />
 
           <RandomImg addFavImage={this.addFavImage} />
+          <FavImages favorites={this.state.favorites} />
 
         </div>
       </BrowserRouter>
