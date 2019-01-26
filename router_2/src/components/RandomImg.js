@@ -1,65 +1,59 @@
 import React from 'react';
 import axios from 'axios';
+import Image from './Image';
 
 class RandomImg extends React.Component {
- 
+
   constructor () {
     super();
     this.state = {
-      images: '',
-      comments: ''
+      imageUrl: '',
+      comments: '',
+      isFavorite: false
     }
   }
 
-  componentDidMount = () => {
+  handleRandomOne = () => {
     axios.get('https://dog.ceo/api/breeds/image/random')
     .then(res => {
       this.setState({
-        images: res.data.message
+        imageUrl: res.data.message
       })
     })
   }
 
-  handleChange = (e) => {
-    e.stopPropagation();
-    this.setState({
-      comments: e.target.value
-    })
-  }
+  // handleChange = (e) => {
+  //   this.setState({
+  //     comments: e.target.value
+  //   })
+  // }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+  handleFavorite = (e) => {
     this.props.addFavImage(this.state);
-    console.log(this.state)
     this.setState({
-      comments: ''
+      comments: '',
+      isFavorite: true
     })
   }
 
   render () {
-    const postList = this.state.images.length ? (
-      <div className="post card">
-        <img 
-          src={this.state.images} 
-          alt="" 
-          max-height='auto'
-          max-width='auto'
-          height='50%'
-          width='50%'
-          className="card-content"/><br />
-        <form onSubmit={this.handleSubmit}>
-          <label>Your Comments:</label>
-          <input type="text" value={this.state.comments} onChange={this.handleChange}/>
-          <button type='submit'>Add to Favorite</button><br /><br />
-        </form>
-      </div>
-    ) : (
-      <div className="center">Loading ...</div>
-      )
     return (
-      <div className="container center">
-        {postList}
+      <div className="container">
+        <button 
+          className="btn waves-effect waves-light center" 
+          type="submit" 
+          name="action"
+          onClick={this.handleRandomOne}
+        >Click for a random picture
+          <i className="small material-icons right">cloud</i>
+        </button>
+        { !this.isFavorite ? 
+          <Image 
+            imageUrl={this.state.imageUrl} 
+            handleFavorite={this.handleFavorite}
+            handleChange={this.handleChange} />
+          : <p>Favorite added, please click to view another one.</p>
+        }
       </div>
     )
   }
