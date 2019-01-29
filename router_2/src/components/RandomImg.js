@@ -17,6 +17,7 @@ class RandomImg extends React.Component {
     axios.get('https://dog.ceo/api/breeds/image/random')
     .then(res => {
       this.setState({
+        isFavorite: false,
         imageUrl: res.data.message
       })
     })
@@ -41,17 +42,26 @@ class RandomImg extends React.Component {
       <div className="container">
         <button 
           className="btn waves-effect waves-light center" 
-          type="submit" 
-          name="action"
           onClick={this.handleRandomOne}
         >Click for a random picture
           <i className="small material-icons right">cloud</i>
         </button>
-        { !this.isFavorite ? 
+
+        { !this.state.isFavorite ? (
+          <>
           <Image 
             imageUrl={this.state.imageUrl} 
             handleFavorite={this.handleFavorite}
             handleChange={this.handleChange} />
+          
+          <button 
+            className="btn waves-effect waves-light" 
+            type="submit" 
+            name="action"
+            onClick={() => {this.handleFavorite(this.state.imageUrl)}}
+          >Add to Favorite
+            <i className="small material-icons right">send</i>
+          </button> </>)
           : <p>Favorite added, please click to view another one.</p>
         }
       </div>

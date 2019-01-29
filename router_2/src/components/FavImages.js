@@ -2,11 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const FavImages = (props) => {
-  let id = props.match.params.id;
+  // debugger
+  // let id = props.match.params.id;
   let imageList = props.favorites.map(image => {
     return (
-      <div className="container" key={id}>
-        <Link to={'/' + id}>
+      <div className="container" key={image.id}>
+        <Link to={'/' + image.id}>
           <img src={image.imageUrl} alt="" />
         </Link>
       </div>

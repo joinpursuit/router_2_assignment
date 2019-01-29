@@ -18,17 +18,9 @@ class Image extends React.Component {
 //   }
 // }
   render () {
-    const imageItem = this.props.imageUrl.length ?  (
+    const imageItem = this.props.imageUrl.length ? (
       <div className="container-center">
         <img src={this.props.imageUrl} alt="" className="responsive-img"/><br /><br /><hr />
-        <button 
-          className="btn waves-effect waves-light" 
-          type="submit" 
-          name="action"
-          onClick={() => {this.props.handleFavorite(this.props.imageUrl)}}
-        >Add to Favorite
-          <i className="small material-icons right">send</i>
-        </button>
       </div>
     ) : null
     return (
